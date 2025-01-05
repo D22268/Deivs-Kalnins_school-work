@@ -1,3 +1,22 @@
 git flow init
 
+# Tool rental application setup instructions
 
+1. Clone the repository:
+   open bash
+   git clone <repository-url>
+   cd repository
+2. Install dependencies for the database
+    pip install -r requirements.txt
+3. Create a .env file, to make it possible to wirk with the database sql file
+    DATABASE_HOST = os.getenv("DB_HOST", "localhost")
+    DATABASE_USER = os.getenv("DB_USER", "DeivsK")
+    DATABASE_PASSWORD = os.getenv("DB_PASSWORD", "password")
+    DATABASE_NAME = os.getenv("DB_NAME", "Rental")
+    LOG_LEVEL = os.getenv("LOG_LEVEL", "DEBUG")
+4. Initialise the database
+    python app/database_setup.py
+5. Run the app
+    python app/main.py
+6. Test if needed
+    pytest
