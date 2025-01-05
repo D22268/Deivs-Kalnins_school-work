@@ -1,7 +1,4 @@
-git flow init
-
 # Tool rental application setup instructions
-
 1. Clone the repository:
    open bash
    git clone <repository-url>
