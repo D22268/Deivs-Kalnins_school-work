@@ -18,8 +18,7 @@ CREATE TABLE `Rented_tool` (
     `Instrument_loss_cost` INT NOT NULL,
     FOREIGN KEY (Tool_id) REFERENCES Tool_storage(Tool_id),
     FOREIGN KEY (Rent_id) REFERENCES Rent(Rent_id),
-    FOREIGN KEY (Category_id) REFERENCES Categories(Category_id), 
-    FOREIGN KEY (Tool_id) REFERENCES Tool_storage(Tool_id)
+    FOREIGN KEY (Category_id) REFERENCES Categories(Category_id) 
 );
 
 CREATE TABLE `Categories` (

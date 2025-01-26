@@ -1,6 +1,6 @@
 import pymysql
-from app.logger import logger
-from app.config import Config
+from App.logger import logger
+from App.config import Config
 
 def add_renter(connection, name, surname, personal_id, phone):
     with connection.cursor() as cursor:

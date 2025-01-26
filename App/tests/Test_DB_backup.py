@@ -1,7 +1,7 @@
 import pytest
 import pymysql
-from app.config import Config
-from app.database_setup import execute_sql_file
+from App.config import Config
+from App.database_setup import execute_sql_file
 
 @pytest.fixture(scope="module")
 def connection():
