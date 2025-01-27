@@ -20,18 +20,19 @@ def execute_sql_file(sql_file, connection):
 def initialize_database():
     """Connects to MySQL, creates the database if it doesn't exist, and initializes the schema."""
     connection = pymysql.connect(
-        host=Config.DATABASE_HOST,
-        user=Config.DATABASE_USER,
-        password=Config.DATABASE_PASSWORD,
-        charset="utf8mb4",
-        cursorclass=pymysql.cursors.DictCursor
+    host=Config.DATABASE_HOST,
+    user=Config.DATABASE_USER,
+    password=Config.DATABASE_PASSWORD,
+    db='rental',  # Ensure you're connecting to the 'Rental' database
+    charset="utf8mb4",
+    cursorclass=pymysql.cursors.DictCursor
     )
 
     try:
         with connection.cursor() as cursor:
             # Ensure the database exists
-            cursor.execute("CREATE DATABASE IF NOT EXISTS Rental;")
-            cursor.execute("USE Rental;")  # Explicitly select the database
+            cursor.execute("CREATE DATABASE IF NOT EXISTS rental;")
+            cursor.execute("USE rental;")  # Explicitly select the database
 
         logger.info("Executing schema.sql to set up the database...")
         execute_sql_file("schema.sql", connection)
@@ -42,14 +43,18 @@ def initialize_database():
     
     finally:
         connection.close()
-
-def get_db_connection():
-    """Returns a new database connection."""
-    return pymysql.connect(
+        
+    def get_db_connection():
+        """Establishes and returns a connection to the MySQL database."""
+    connection = pymysql.connect(
         host=Config.DATABASE_HOST,
         user=Config.DATABASE_USER,
         password=Config.DATABASE_PASSWORD,
-        database="Rental",  # Ensure this matches your schema
+        db=Config.DATABASE_NAME,  # Replace with the actual database name if needed
         charset="utf8mb4",
         cursorclass=pymysql.cursors.DictCursor
     )
+    return connection
+        
+    if __name__ == "__main__":
+        initialize_database()

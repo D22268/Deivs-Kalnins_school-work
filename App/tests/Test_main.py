@@ -1,6 +1,6 @@
 import pymysql
 import pytest
-from App.database_setup import get_db_connection  #
+from App.database_setup import get_db_connection
 
 def test_update_multiple_tables():
     """
@@ -13,21 +13,21 @@ def test_update_multiple_tables():
         # Start a transaction
         connection.begin()
 
-        # Example Update 1: Update renter's phone number
+        #  Update renter's phone number
         cursor.execute("""
             UPDATE Renter 
             SET Phone_num = %s 
             WHERE Renter_id = %s
         """, (266606449, 1))  # Replace with test values
 
-        # Example Update 2: Update tool rental price
+        #  Update tool rental price
         cursor.execute("""
             UPDATE Rent 
             SET Rent_cost = %s 
             WHERE Rent_id = %s
         """, (20, 1))  # Fixed column name
 
-        # Example Update 3: Update tool storage amount
+        # Update tool storage amount
         cursor.execute("""
             UPDATE Tool_storage 
             SET Amount_stored = Amount_stored - 1 
